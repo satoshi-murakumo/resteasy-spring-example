@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Validator;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,8 +15,9 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
+import example.configuration.ReadDb;
+import example.configuration.ReadWriteDb;
 import example.model.dao.EmployeeDao;
 import example.model.data.Employee;
 import example.web.service.request.EmployeeRequest;
@@ -33,7 +35,6 @@ public class EmployeeService {
     private EmployeeDao employeeDao;
 
     public EmployeeService() {
-
     }
 
     @Inject
@@ -44,6 +45,7 @@ public class EmployeeService {
 
     @GET
     @Path("/")
+    @ReadWriteDb
     public EmployeeListResponse get() {
         logger.debug("enter get");
         List<Employee> list = employeeDao.selectAll();
@@ -52,7 +54,7 @@ public class EmployeeService {
 
     @GET
     @Path("/read")
-    @Transactional(value = "ReadOnly", rollbackFor=java.lang.Exception.class)
+    @ReadDb
     public EmployeeListResponse getRead() {
         List<Employee> list = employeeDao.selectAll();
         return EmployeeListResponse.from(list);
@@ -60,7 +62,8 @@ public class EmployeeService {
 
     @POST
     @Path("/")
-    @Transactional(value = "ReadWrite", rollbackFor=java.lang.Exception.class)
+    @ReadWriteDb
+    @Consumes(MediaType.APPLICATION_XML)
     public Response post(EmployeeRequest request) {
         return Response.ok().build();
     }

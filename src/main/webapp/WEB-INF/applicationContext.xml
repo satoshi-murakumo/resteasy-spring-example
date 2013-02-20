@@ -47,7 +47,7 @@
   <bean id="domaConfiguration" class="example.configuration.DataSourceConfiguration" >
     <property name="dialect" ref="oracleDialect"></property>
     <property name="dataSource" ref="domaDataSource"></property>
-    <property name="requiresNewController" ref="requireNewController"></property>
+    <property name="requiresNewController" ref="domaRequiresNewController"></property>
   </bean>
 
   <bean id="oracleDialect" class="org.seasar.doma.jdbc.dialect.OracleDialect" />
@@ -60,18 +60,6 @@
         </map>
     </constructor-arg>
   </bean>
-
-  <bean id="requireNewController" class="example.configuration.DomaRequiresNewController" />
-  <aop:config>
-    <aop:advisor advice-ref="requireNewTxAdvice" pointcut="execution(* example.configuration.DomaRequiresNewController.*(..))" />
-  </aop:config>
-
-  <tx:advice id="requireNewTxAdvice" transaction-manager="transactionManager">
-    <tx:attributes>
-      <tx:method name="*" propagation="REQUIRES_NEW" rollback-for="Throwable"/>
-    </tx:attributes>
-  </tx:advice>
-
 
   <!-- ========================= ASPECT CONFIGURATION ======================== -->
   <tx:annotation-driven />
