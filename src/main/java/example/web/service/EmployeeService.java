@@ -11,6 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,8 @@ import example.web.service.response.EmployeeListResponse;
 @Path("employee")
 @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 public class EmployeeService {
+
+    private Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 
     private Validator validator;
 
@@ -43,6 +47,7 @@ public class EmployeeService {
     @Path("/")
     @Transactional(value = "ReadWrite", rollbackFor=java.lang.Exception.class)
     public EmployeeListResponse get() {
+        logger.debug("enter get");
         List<Employee> list = employeeDao.selectAll();
         return EmployeeListResponse.from(list);
     }

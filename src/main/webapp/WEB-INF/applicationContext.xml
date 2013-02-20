@@ -43,18 +43,15 @@
     <constructor-arg ref="readOnlyNativeDataSource" />
   </bean>
 
+  <!-- ========================= DOMA CONFIGURATION ========================== -->
   <bean id="domaConfiguration" class="example.configuration.DataSourceConfiguration" >
     <property name="dialect" ref="oracleDialect"></property>
     <property name="dataSource" ref="domaDataSource"></property>
+    <property name="requiresNewController" ref="requireNewController"></property>
   </bean>
 
   <bean id="oracleDialect" class="org.seasar.doma.jdbc.dialect.OracleDialect" />
 
-  <!--
-  <bean id="domaDataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
-    <constructor-arg ref="dataSource"></constructor-arg>
-  </bean>
-   -->
   <bean id="domaDataSource" class="example.configuration.MultiTransactionAwareDataSourceProxy">
     <constructor-arg>
         <map key-type="java.lang.String" value-type="javax.sql.DataSource">
@@ -63,6 +60,17 @@
         </map>
     </constructor-arg>
   </bean>
+
+  <bean id="requireNewController" class="example.configuration.DomaRequiresNewController" />
+  <aop:config>
+    <aop:advisor advice-ref="requireNewTxAdvice" pointcut="execution(* example.configuration.DomaRequiresNewController.*(..))" />
+  </aop:config>
+
+  <tx:advice id="requireNewTxAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+      <tx:method name="*" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception"/>
+    </tx:attributes>
+  </tx:advice>
 
 
   <!-- ========================= ASPECT CONFIGURATION ======================== -->

@@ -20,8 +20,8 @@
   <listener>
     <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
   </listener>
- <listener>
-   <listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+  <listener>
+    <listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
   </listener>
   <servlet>
     <servlet-name>Resteasy</servlet-name>
