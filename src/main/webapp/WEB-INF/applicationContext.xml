@@ -68,7 +68,7 @@
 
   <tx:advice id="requireNewTxAdvice" transaction-manager="transactionManager">
     <tx:attributes>
-      <tx:method name="*" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception"/>
+      <tx:method name="*" propagation="REQUIRES_NEW" rollback-for="Throwable"/>
     </tx:attributes>
   </tx:advice>
 

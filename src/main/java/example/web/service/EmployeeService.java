@@ -30,22 +30,20 @@ public class EmployeeService {
 
     private Validator validator;
 
+    private EmployeeDao employeeDao;
+
+    public EmployeeService() {
+
+    }
+
     @Inject
-    public void setValidator(Validator validator) {
+    public EmployeeService(EmployeeDao employeeDao, Validator validator) {
+        this.employeeDao = employeeDao;
         this.validator = validator;
     }
 
-    private EmployeeDao employeeDao;
-
-    @Inject
-    public void setEmployeeDao(EmployeeDao employeeDao) {
-        this.employeeDao = employeeDao;
-    }
-
-
     @GET
     @Path("/")
-    @Transactional(value = "ReadWrite", rollbackFor=java.lang.Exception.class)
     public EmployeeListResponse get() {
         logger.debug("enter get");
         List<Employee> list = employeeDao.selectAll();
