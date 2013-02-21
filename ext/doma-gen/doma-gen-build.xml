@@ -14,7 +14,9 @@
     <property name="password" value="password"/>
 
     <property name="entityPackageName" value="example.model.data"/>
+
     <property name="daoPackageName" value="example.model.dao"/>
+
     <property name="configClassName" value="example.configuration.DataSourceConfiguration"/>
     <property name="sqlTestClassName" value="example.model.dao.SqlTest"/>
 
@@ -23,6 +25,7 @@
         <fileset dir="${projectDir}/repo">
             <include name="**/*.jar" />
         </fileset>
+        <dirset dir="${projectDir}/target/classes"></dirset>
     </path>
 
     <taskdef name="gen" classname="org.seasar.doma.extension.gen.task.Gen" classpathref="classpath" loaderref="loader"/>
@@ -43,6 +46,7 @@
             <entityConfig
                 destdir="${javaDestDir}"
                 packageName="${entityPackageName}"
+                uselistener="false"
             />
             <daoConfig
                 destdir="${javaDestDir}"

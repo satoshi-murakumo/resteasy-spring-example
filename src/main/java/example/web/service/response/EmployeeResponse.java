@@ -5,8 +5,11 @@ import java.sql.Timestamp;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.msgpack.annotation.Message;
+
 import example.model.data.Employee;
 
+@Message
 @XmlRootElement(name = "employee")
 public class EmployeeResponse {
 

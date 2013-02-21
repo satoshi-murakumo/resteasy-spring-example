@@ -2,13 +2,18 @@ package example.web.service.response;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.msgpack.annotation.Message;
 
 import example.model.data.Employee;
 
 @XmlRootElement(name = "employees")
+@Message
 public class EmployeeListResponse {
 
+    @XmlElement(name = "employee")
     public EmployeeResponse[] employees;
 
     public static EmployeeListResponse from(List<Employee> employees) {
