@@ -21,6 +21,11 @@
   <!-- ========================= CONPORNENT DEFINITIONS ======================== -->
   <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
+  <bean id="httpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+    <property name="connectTimeout" value="2"></property>
+    <property name="readTimeout" value="2"></property>
+  </bean>
+
   <context:component-scan base-package="example" />
 
 
