@@ -21,11 +21,6 @@
   <!-- ========================= CONPORNENT DEFINITIONS ======================== -->
   <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
-  <bean id="httpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
-    <property name="connectTimeout" value="2"></property>
-    <property name="readTimeout" value="2"></property>
-  </bean>
-
   <context:component-scan base-package="example" />
 
 
@@ -49,7 +44,7 @@
   </bean>
 
   <!-- ========================= DOMA CONFIGURATION ========================== -->
-  <bean id="domaConfiguration" class="example.configuration.DataSourceConfiguration" >
+  <bean id="domaConfiguration" class="example.infrastructure.db.domasupport.DataSourceConfiguration" >
     <property name="dialect" ref="oracleDialect"></property>
     <property name="dataSource" ref="domaDataSource"></property>
     <property name="requiresNewController" ref="domaRequiresNewController"></property>
@@ -57,7 +52,7 @@
 
   <bean id="oracleDialect" class="org.seasar.doma.jdbc.dialect.OracleDialect" />
 
-  <bean id="domaDataSource" class="example.configuration.MultiTransactionAwareDataSourceProxy">
+  <bean id="domaDataSource" class="example.infrastructure.db.MultiTransactionAwareDataSourceProxy">
     <constructor-arg>
         <map key-type="java.lang.String" value-type="javax.sql.DataSource">
             <entry key="ReadWrite" value-ref="dataSource"></entry>

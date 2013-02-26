@@ -13,12 +13,12 @@
     <property name="user" value="user04"/>
     <property name="password" value="password"/>
 
-    <property name="entityPackageName" value="example.model.data"/>
+    <property name="entityPackageName" value="example.application.model.dao.db.dto"/>
 
-    <property name="daoPackageName" value="example.model.dao"/>
+    <property name="daoPackageName" value="example.application.model.dao.db"/>
 
-    <property name="configClassName" value="example.configuration.DataSourceConfiguration"/>
-    <property name="sqlTestClassName" value="example.model.dao.SqlTest"/>
+    <property name="configClassName" value="example.infrastructure.db.domasupport.DataSourceConfiguration"/>
+    <property name="sqlTestClassName" value="example.application.model.dao.db.SqlTest"/>
 
     <path id="classpath">
         <fileset dir="lib"/>

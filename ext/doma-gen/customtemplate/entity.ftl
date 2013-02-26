@@ -19,11 +19,11 @@ import ${importName};
  * @author ${lib.author}
 </#if>
  */
-@Entity(listener = example.model.data.ConventinalEntityListener.class)
+@Entity(listener = example.infrastructure.db.ConventinalEntityListener.class)
 <#if showCatalogName && catalogName?? || showSchemaName && schemaName?? || showTableName && tableName??>
 @Table(<#if showCatalogName && catalogName??>catalog = "${catalogName}"</#if><#if showSchemaName && schemaName??><#if showCatalogName && catalogName??>, </#if>schema = "${schemaName}"</#if><#if showTableName><#if showCatalogName && catalogName?? || showSchemaName && schemaName??>, </#if>name = "${tableName}"</#if>)
 </#if>
-public class ${simpleName} implements example.model.data.Conventional {
+public class ${simpleName} implements example.infrastructure.db.Conventional {
 <#list ownEntityPropertyDescs as property>
 
   <#if showDbComment && property.comment??>
