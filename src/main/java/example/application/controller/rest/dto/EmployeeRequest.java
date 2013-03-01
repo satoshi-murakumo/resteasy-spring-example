@@ -1,11 +1,12 @@
 package example.application.controller.rest.dto;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.joda.time.LocalDateTime;
 
 
 @XmlRootElement(name = "employee")
@@ -17,7 +18,7 @@ public class EmployeeRequest {
     @Size(max = 20)
     public String employeeName;
 
-    public Timestamp hiredate;
+    public LocalDateTime hiredate;
 
     @Digits(integer = 5, fraction = 2)
     public BigDecimal salary;

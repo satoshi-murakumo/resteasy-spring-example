@@ -1,10 +1,10 @@
 package example.application.controller.rest.dto;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.joda.time.LocalDateTime;
 import org.msgpack.annotation.Message;
 
 import example.application.model.dao.db.dto.Employee;
@@ -17,7 +17,7 @@ public class EmployeeResponse {
 
     public String employeeName;
 
-    public Timestamp hiredate;
+    public LocalDateTime hiredate;
 
     public BigDecimal salary;
 

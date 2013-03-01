@@ -21,10 +21,10 @@ import org.msgpack.packer.BufferPacker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import example.application.controller.rest.dto.EmployeeListResponse;
 import example.application.controller.rest.dto.EmployeeRequest;
-import example.application.controller.rest.dto.EmployeeResponse;
 import example.application.model.dao.db.EmployeeDao;
 import example.application.model.dao.db.dto.Employee;
 import example.infrastructure.transaction.ReadDb;
@@ -63,24 +63,18 @@ public class EmployeeService {
 
     @GET
     @Path("/")
-    @ReadWriteDb
+    @Transactional(value = "ReadWrite", readOnly = true)
     public EmployeeListResponse get() {
         List<Employee> list = employeeDao.selectAll();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return EmployeeListResponse.from(list);
+        EmployeeListResponse response = EmployeeListResponse.from(list);
+        return response;
     }
 
     private static MessagePack msgPack;
     static {
         msgPack = new MessagePack();
-        msgPack.register(EmployeeListResponse.class);
-        msgPack.register(EmployeeResponse.class);
+//        msgPack.register(EmployeeListResponse.class);
+//        msgPack.register(EmployeeResponse.class);
     }
 
     @GET

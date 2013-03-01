@@ -1,7 +1,8 @@
 package example.application.model.dao.db.dto;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+
+import org.joda.time.LocalDateTime;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 import org.seasar.doma.Id;
@@ -24,7 +25,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
 
     /** */
     @Column(name = "HIREDATE")
-    Timestamp hiredate;
+    LocalDateTime hiredate;
 
     /** */
     @Column(name = "SALARY")
@@ -32,7 +33,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
 
     /** */
     @Column(name = "CRTDATE")
-    Timestamp crtdate;
+    LocalDateTime crtdate;
 
     /** */
     @Column(name = "CRTEMPLCODE")
@@ -44,7 +45,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
 
     /** */
     @Column(name = "UPDDATE")
-    Timestamp upddate;
+    LocalDateTime upddate;
 
     /** */
     @Column(name = "UPDEMPLCODE")
@@ -95,7 +96,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
      *
      * @return the hiredate
      */
-    public Timestamp getHiredate() {
+    public LocalDateTime getHiredate() {
         return hiredate;
     }
 
@@ -104,7 +105,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
      *
      * @param hiredate the hiredate
      */
-    public void setHiredate(Timestamp hiredate) {
+    public void setHiredate(LocalDateTime hiredate) {
         this.hiredate = hiredate;
     }
 
@@ -131,7 +132,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
      *
      * @return the crtdate
      */
-    public Timestamp getCrtdate() {
+    public LocalDateTime getCrtdate() {
         return crtdate;
     }
 
@@ -140,7 +141,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
      *
      * @param crtdate the crtdate
      */
-    public void setCrtdate(Timestamp crtdate) {
+    public void setCrtdate(LocalDateTime crtdate) {
         this.crtdate = crtdate;
     }
 
@@ -185,7 +186,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
      *
      * @return the upddate
      */
-    public Timestamp getUpddate() {
+    public LocalDateTime getUpddate() {
         return upddate;
     }
 
@@ -194,7 +195,7 @@ public class MEmployee implements example.infrastructure.db.Conventional {
      *
      * @param upddate the upddate
      */
-    public void setUpddate(Timestamp upddate) {
+    public void setUpddate(LocalDateTime upddate) {
         this.upddate = upddate;
     }
 

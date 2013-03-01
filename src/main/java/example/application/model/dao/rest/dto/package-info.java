@@ -1,6 +1,5 @@
 @XmlJavaTypeAdapters({
-    @XmlJavaTypeAdapter(value = example.infrastructure.xml.SqlDateAdaptor.class, type = java.sql.Date.class),
-    @XmlJavaTypeAdapter(value = example.infrastructure.xml.TimestampAdaptor.class, type = java.sql.Timestamp.class)
+    @XmlJavaTypeAdapter(value = example.infrastructure.xml.LocalDateTimeAdapter.class, type = org.joda.time.LocalDateTime.class),
 })
 package example.application.model.dao.rest.dto;
 

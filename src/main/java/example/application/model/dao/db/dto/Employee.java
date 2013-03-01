@@ -1,8 +1,8 @@
 package example.application.model.dao.db.dto;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
+import org.joda.time.LocalDateTime;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 import org.seasar.doma.Id;
@@ -26,7 +26,7 @@ public class Employee {
 
     /** */
     @Column(name = "HIREDATE")
-    Timestamp hiredate;
+    LocalDateTime hiredate;
 
     /** */
     @Column(name = "SALARY")
@@ -78,7 +78,7 @@ public class Employee {
      *
      * @return the hiredate
      */
-    public Timestamp getHiredate() {
+    public LocalDateTime getHiredate() {
         return hiredate;
     }
 
@@ -87,7 +87,7 @@ public class Employee {
      *
      * @param hiredate the hiredate
      */
-    public void setHiredate(Timestamp hiredate) {
+    public void setHiredate(LocalDateTime hiredate) {
         this.hiredate = hiredate;
     }
 

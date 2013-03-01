@@ -1,7 +1,6 @@
 package example.infrastructure.db;
 
-import java.sql.Timestamp;
-
+import org.joda.time.LocalDateTime;
 import org.seasar.doma.jdbc.entity.EntityListener;
 import org.seasar.doma.jdbc.entity.PostDeleteContext;
 import org.seasar.doma.jdbc.entity.PostInsertContext;
@@ -19,16 +18,13 @@ public class ConventinalEntityListener implements EntityListener<Conventional> {
     public void preInsert(Conventional entity, PreInsertContext context) {
         ApplicationContext appContext = ApplicationContextProvider.getApplicationContext();
 
-
-        Timestamp current = new Timestamp(System.currentTimeMillis());
-        entity.setCrtdate(current);
+        entity.setCrtdate(LocalDateTime.now());
     }
 
     @Override
     public void preUpdate(Conventional entity, PreUpdateContext context) {
         if (context.isEntityChanged()) {
-            Timestamp current = new Timestamp(System.currentTimeMillis());
-            entity.setUpddate(current);
+            entity.setUpddate(LocalDateTime.now());
         }
     }
 

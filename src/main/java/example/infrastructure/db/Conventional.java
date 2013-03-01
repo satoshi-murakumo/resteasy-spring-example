@@ -1,17 +1,17 @@
 package example.infrastructure.db;
 
-import java.sql.Timestamp;
+import org.joda.time.LocalDateTime;
 
 
 public interface Conventional {
 
-    public void setCrtdate(Timestamp crtdate);
+    public void setCrtdate(LocalDateTime crtdate);
 
     public void setCrtemplcode(String crtemplcode);
 
     public void setCrttermid(String crttermid);
 
-    public void setUpddate(Timestamp upddate);
+    public void setUpddate(LocalDateTime upddate);
 
     public void setUpdemplcode(String updemplcode);
 
