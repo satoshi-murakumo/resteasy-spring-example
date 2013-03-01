@@ -46,20 +46,7 @@ public class EmployeeService {
 
     private UriInfo uriInfo;
 
-    @Context
-    public void setUriInfo(UriInfo uriInfo) {
-        this.uriInfo = uriInfo;
-    }
-
-    public EmployeeService() {
-    }
-
-    @Inject
-    public EmployeeService(EmployeeDao employeeDao, Validator validator, RequestMetaData metaData) {
-        this.employeeDao = employeeDao;
-        this.validator = validator;
-        this.meta = metaData;
-    }
+    private MessagePack msgPack;
 
     @GET
     @Path("/")
@@ -70,12 +57,6 @@ public class EmployeeService {
         return response;
     }
 
-    private static MessagePack msgPack;
-    static {
-        msgPack = new MessagePack();
-//        msgPack.register(EmployeeListResponse.class);
-//        msgPack.register(EmployeeResponse.class);
-    }
 
     @GET
     @Path("/")
@@ -130,4 +111,30 @@ public class EmployeeService {
 
         return Response.ok().build();
     }
+
+    @Inject
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
+
+    @Inject
+    public void setEmployeeDao(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
+    }
+
+    @Inject
+    public void setMeta(RequestMetaData meta) {
+        this.meta = meta;
+    }
+
+    @Inject
+    public void setMsgPack(MessagePack msgPack) {
+        this.msgPack = msgPack;
+    }
+
+    @Context
+    public void setUriInfo(UriInfo uriInfo) {
+        this.uriInfo = uriInfo;
+    }
+
 }

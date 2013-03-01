@@ -2,7 +2,6 @@ package example.infrastructure.db.domasupport;
 
 import java.sql.Timestamp;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.seasar.doma.ExternalDomain;
 import org.seasar.doma.jdbc.domain.DomainConverter;
@@ -17,7 +16,7 @@ public class LocalDateTimeConverter implements DomainConverter<LocalDateTime, Ti
 
     @Override
     public LocalDateTime fromValueToDomain(Timestamp value) {
-        return new DateTime(value.getTime()).toLocalDateTime();
+        return new LocalDateTime(value.getTime());
     }
 
 }

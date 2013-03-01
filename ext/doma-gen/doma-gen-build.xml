@@ -43,7 +43,9 @@
             url="${url}"
             user="${user}"
             password="${password}"
-            templatePrimaryDir="customtemplate">
+            templatePrimaryDir="customtemplate"
+            tablenamepattern="(M_EMPLOYEE|EMPLOYEE)">
+
             <entityConfig
                 destdir="${javaDestDir}"
                 packageName="${entityPackageName}"

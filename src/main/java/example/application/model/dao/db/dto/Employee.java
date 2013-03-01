@@ -11,7 +11,7 @@ import org.seasar.doma.Version;
 
 /**
  */
-@Entity(listener = EmployeeListner.class)
+@Entity
 @Table(name = "EMPLOYEE")
 public class Employee {
 
