@@ -21,6 +21,28 @@
   <!-- ========================= CONPORNENT DEFINITIONS ======================== -->
   <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
+  <bean id="clientHttpRequestFactoryCreator" class="example.infrastructure.webclient.CustomHttpComponentsClientHttpRequestFactoryCreator" >
+    <property name="maxTotalConnections" value="100"></property>
+    <property name="maxConnectionsPerRoute" value="10"></property>
+    <property name="connectionTimeoutMilliseconds" value="2000"></property>
+    <property name="readTimeoutMilliseconds" value="2000"></property>
+    <property name="retryHandler">
+        <bean class="example.infrastructure.webclient.CustomHttpRequestRetryHandler"></bean>
+    </property>
+    <property name="retryStrategy">
+        <bean class="example.infrastructure.webclient.CustomServiceUnavailableRetryStrategy"></bean>
+    </property>
+  </bean>
+  <bean id="clientHttpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory"
+    factory-bean="clientHttpRequestFactoryCreator"
+    factory-method="createFacotry">
+  </bean>
+
+  <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" >
+    <property name="maxPoolSize" value="50"></property>
+    <property name="keepAliveSeconds" value="10"></property>
+  </bean>
+
   <context:component-scan base-package="example" />
 
 

@@ -21,7 +21,6 @@ import org.msgpack.packer.BufferPacker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import example.application.controller.rest.dto.EmployeeListResponse;
 import example.application.controller.rest.dto.EmployeeRequest;
@@ -64,10 +63,15 @@ public class EmployeeService {
 
     @GET
     @Path("/")
-    @Transactional(value ="ReadWrite", readOnly = true)
+    @ReadWriteDb
     public EmployeeListResponse get() {
         List<Employee> list = employeeDao.selectAll();
 
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return EmployeeListResponse.from(list);
     }
@@ -81,7 +85,7 @@ public class EmployeeService {
 
     @GET
     @Path("/")
-    @Transactional(value ="ReadWrite", readOnly = true)
+    @ReadWriteDb
     @Produces("application/x-msgpack")
     public Response getByMsgPack() {
 
