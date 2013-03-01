@@ -14,6 +14,7 @@
     <property name="password" value="password"/>
 
     <property name="entityPackageName" value="example.application.model.dao.db.dto"/>
+    <property name="entitypropertyclassnamesfile" value="${projectDir}/ext/doma-gen/customtemplate/entityPropertyClassNamesfile.properties"/>
 
     <property name="daoPackageName" value="example.application.model.dao.db"/>
 
@@ -47,6 +48,7 @@
                 destdir="${javaDestDir}"
                 packageName="${entityPackageName}"
                 uselistener="false"
+                entitypropertyclassnamesfile="${entitypropertyclassnamesfile}"
             />
             <daoConfig
                 destdir="${javaDestDir}"

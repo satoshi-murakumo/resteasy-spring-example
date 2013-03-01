@@ -1,7 +1,6 @@
 package example.application.model.dao.db.dto;
 
 import java.math.BigDecimal;
-
 import org.joda.time.LocalDateTime;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
