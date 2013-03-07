@@ -245,6 +245,10 @@
         <artifactId>maven-processor-plugin</artifactId>
         <configuration>
           <compilerArguments>-encoding ${project.build.sourceEncoding}</compilerArguments>
+          <optionMap>
+            <sql.validation>false</sql.validation>
+            <domain.converters>example.infrastructure.db.domasupport.DomainConvertersProvider</domain.converters>
+          </optionMap>
         </configuration>
         <executions>
           <execution>
